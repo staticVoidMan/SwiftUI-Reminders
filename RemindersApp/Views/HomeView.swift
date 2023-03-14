@@ -9,11 +9,17 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var isPresented: Bool = false
+    @FetchRequest(sortDescriptors: [])
+    private var reminderLists: FetchedResults<MyList>
+    
+    @State
+    private var isPresented: Bool = false
     
     var body: some View {
         NavigationStack {
-            Text("Hello, World!")
+            List(reminderLists, id: \.self) { list in
+                Text(list.name)
+            }
             
             Spacer()
             
