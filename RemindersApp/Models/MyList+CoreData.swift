@@ -9,7 +9,7 @@ import CoreData
 import UIKit
 
 @objc(MyList)
-class MyList: NSManagedObject {
+public class MyList: NSManagedObject {
     
     @NSManaged var name: String
     @NSManaged var color: UIColor
