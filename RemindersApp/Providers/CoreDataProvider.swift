@@ -13,6 +13,8 @@ class CoreDataProvider {
     let container: NSPersistentContainer
     
     private init() {
+        ValueTransformer.setValueTransformer(UIColorTransformer(), forName: .init("UIColorTransformer"))
+        
         container = NSPersistentContainer(name: "RemindersModel")
         container.loadPersistentStores { _, error in
             if let error {

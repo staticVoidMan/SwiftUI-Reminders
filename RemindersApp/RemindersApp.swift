@@ -12,6 +12,7 @@ struct RemindersApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environment(\.managedObjectContext, RemindersService.context)
         }
     }
 }

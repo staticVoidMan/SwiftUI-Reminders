@@ -31,7 +31,14 @@ struct HomeView: View {
             NavigationView {
                 AddNewListView(
                     onSave: { name, color in
-                        print(name, color)
+                        do {
+                            try RemindersService.saveList(
+                                name: name,
+                                color: UIColor(color)
+                            )
+                        } catch {
+                            print(error)
+                        }
                     }
                 )
                 .padding()
@@ -43,5 +50,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environment(\.managedObjectContext, RemindersService.context)
     }
 }
