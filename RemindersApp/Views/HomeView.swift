@@ -17,9 +17,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            List(reminderLists, id: \.self) { list in
-                Text(list.name)
-            }
+            ReminderListsView(lists: reminderLists)
             
             Spacer()
             
