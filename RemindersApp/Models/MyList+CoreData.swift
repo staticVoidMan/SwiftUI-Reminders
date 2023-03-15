@@ -19,3 +19,10 @@ public class MyList: NSManagedObject {
         return NSFetchRequest(entityName: "MyList")
     }
 }
+
+extension MyList {
+    
+    @objc(addRemindersObject:)
+    @NSManaged public func addToReminders(_ value: Reminder)
+    
+}

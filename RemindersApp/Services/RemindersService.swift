@@ -25,4 +25,13 @@ struct RemindersService {
         
         try save()
     }
+    
+    static func saveReminder(to list: MyList, title: String) throws {
+        let reminder = Reminder(context: context)
+        reminder.title = title
+        
+        list.addToReminders(reminder)
+        
+        try save()
+    }
 }

@@ -12,12 +12,20 @@ struct ReminderListsView: View {
     let lists: FetchedResults<MyList>
     
     var body: some View {
-        ForEach(lists, id: \.self) { list in
-            VStack {
-                ReminderListCellView(reminderList: list)
-                    .padding([.leading, .trailing])
-                    .padding([.top, .bottom], 8)
-                Divider()
+        NavigationStack {
+            ForEach(lists, id: \.self) { list in
+                NavigationLink(value: list) {
+                    VStack {
+                        ReminderListCellView(reminderList: list)
+                            .padding([.leading, .trailing])
+                            .padding([.top, .bottom], 8)
+                        Divider()
+                    }
+                }
+            }
+            .navigationDestination(for: MyList.self) { list in
+                ReminderListDetailView(list: list)
+                    .navigationTitle(list.name)
             }
         }
     }
