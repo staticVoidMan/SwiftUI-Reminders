@@ -13,6 +13,7 @@ public class MyList: NSManagedObject {
     
     @NSManaged var name: String
     @NSManaged var color: UIColor
+    @NSManaged var reminders: NSSet?
     
     @nonobjc
     class func fetchRequest() -> NSFetchRequest<MyList> {

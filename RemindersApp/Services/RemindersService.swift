@@ -34,4 +34,11 @@ struct RemindersService {
         
         try save()
     }
+    
+    static func getReminders(inList list: MyList) -> NSFetchRequest<Reminder> {
+        let request = Reminder.fetchRequest()
+        request.sortDescriptors = []
+        request.predicate = NSPredicate(format: "list = %@", list)
+        return request
+    }
 }

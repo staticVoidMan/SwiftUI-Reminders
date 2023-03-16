@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ReminderListDetailView: View {
     
-    let list: MyList
+    private let list: MyList
+    
+    @FetchRequest(sortDescriptors: [])
+    private var reminders: FetchedResults<Reminder>
     
     @State var openAddReminder: Bool = false
     @State var title: String = ""
@@ -18,8 +21,17 @@ struct ReminderListDetailView: View {
         !title.isEmpty
     }
     
+    init(list: MyList) {
+        self.list = list
+        self._reminders = FetchRequest(fetchRequest: RemindersService.getReminders(inList: list))
+    }
+    
     var body: some View {
         VStack {
+            ReminderListView(reminders: reminders)
+            
+            Spacer()
+            
             HStack {
                 Image(systemName: "plus.circle.fill")
                 Text("Add Reminder")
