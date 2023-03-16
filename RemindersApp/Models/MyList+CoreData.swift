@@ -20,6 +20,8 @@ public class MyList: NSManagedObject {
     }
 }
 
+extension MyList: Identifiable {}
+
 extension MyList {
     
     @objc(addRemindersObject:)

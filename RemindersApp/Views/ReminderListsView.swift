@@ -12,7 +12,7 @@ struct ReminderListsView: View {
     let lists: FetchedResults<MyList>
     
     var body: some View {
-        ForEach(lists, id: \.self) { list in
+        ForEach(lists) { list in
             NavigationLink(value: list) {
                 VStack {
                     ReminderListCellView(reminderList: list)
