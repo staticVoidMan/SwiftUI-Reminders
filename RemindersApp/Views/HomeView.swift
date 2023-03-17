@@ -32,21 +32,18 @@ struct HomeView: View {
             .padding()
         }
         .sheet(isPresented: $isPresented) {
-            NavigationView {
-                AddNewListView(
-                    onSave: { name, color in
-                        do {
-                            try RemindersService.saveList(
-                                name: name,
-                                color: UIColor(color)
-                            )
-                        } catch {
-                            print(error)
-                        }
+            AddNewListView(
+                onSave: { name, color in
+                    do {
+                        try RemindersService.saveList(
+                            name: name,
+                            color: UIColor(color)
+                        )
+                    } catch {
+                        print(error)
                     }
-                )
-                .padding()
-            }
+                }
+            )
         }
     }
 }

@@ -21,38 +21,41 @@ struct AddNewListView: View {
     let onSave: (String, Color) -> Void
     
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
-                Image(systemName: "line.3.horizontal.circle")
-                    .foregroundColor(color)
-                    .font(.system(size: 100))
-                TextField("List Name", text: $name)
-                    .multilineTextAlignment(.center)
-                    .textFieldStyle(.roundedBorder)
-            }
-            
-            ColorPickerView(selectedColor: $color)
-            
-            Spacer()
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("New List")
-                    .font(.headline)
-            }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Close") {
-                    dismiss()
+                VStack {
+                    Image(systemName: "line.3.horizontal.circle")
+                        .foregroundColor(color)
+                        .font(.system(size: 100))
+                    TextField("List Name", text: $name)
+                        .multilineTextAlignment(.center)
+                        .textFieldStyle(.roundedBorder)
                 }
+                
+                ColorPickerView(selectedColor: $color)
+                
+                Spacer()
             }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Done") {
-                    onSave(name, color)
-                    dismiss()
+            .padding()
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("New List")
+                        .font(.headline)
                 }
-                .disabled(!isFormValid)
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        onSave(name, color)
+                        dismiss()
+                    }
+                    .disabled(!isFormValid)
+                }
             }
         }
     }
