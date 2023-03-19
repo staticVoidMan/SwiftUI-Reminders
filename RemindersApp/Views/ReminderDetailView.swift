@@ -45,6 +45,18 @@ struct ReminderDetailView: View {
                         displayedComponents: .hourAndMinute)
                 }
             }
+            
+            Section {
+                NavigationLink {
+                    SelectListView(selectedList: $reminder.list)
+                } label: {
+                    HStack {
+                        Text("Select List")
+                        Spacer()
+                        Text(reminder.list!.name)
+                    }
+                }
+            }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
