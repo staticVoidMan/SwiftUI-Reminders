@@ -72,7 +72,7 @@ struct ReminderDetailView: View {
 struct ReminderDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ReminderDetailView(reminder: .constant(PreviewData.reminder))
+            ReminderDetailView(reminder: .constant(PreviewData.aReminder))
         }
     }
 }

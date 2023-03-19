@@ -30,7 +30,7 @@ struct ReminderListCellView: View {
 struct ReminderListCellView_Previews: PreviewProvider {
     static var previews: some View {
         ReminderListCellView(
-            reminderList: PreviewData.reminderLists
+            reminderList: PreviewData.aList
         )
     }
 }

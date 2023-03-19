@@ -9,14 +9,14 @@ import CoreData
 
 struct PreviewData {
     
-    static var reminder: Reminder {
+    static var aReminder: Reminder {
         let context = RemindersService.context
         let request = Reminder.fetchRequest()
         let found = try? context.fetch(request).first
         return found ?? Reminder(context: context)
     }
     
-    static var reminderLists: MyList {
+    static var aList: MyList {
         let context = RemindersService.context
         let request = MyList.fetchRequest()
         let found = try? context.fetch(request).first

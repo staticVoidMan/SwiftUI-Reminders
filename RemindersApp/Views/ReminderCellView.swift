@@ -70,6 +70,6 @@ struct ReminderCellView: View {
 
 struct ReminderCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderCellView(reminder: PreviewData.reminder)
+        ReminderCellView(reminder: PreviewData.aReminder)
     }
 }

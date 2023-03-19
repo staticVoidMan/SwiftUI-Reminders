@@ -61,6 +61,6 @@ struct ReminderListDetailView: View {
 
 struct ReminderListDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderListDetailView(list: PreviewData.reminderLists)
+        ReminderListDetailView(list: PreviewData.aList)
     }
 }
