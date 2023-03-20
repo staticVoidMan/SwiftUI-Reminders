@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+enum ReminderCellEvents {
+    case onSelect
+    case onInfo(Reminder)
+    case onCheckToggle(Reminder)
+}
+
 struct ReminderCellView: View {
     
     let reminder: Reminder
+    
+    let onEvent: (ReminderCellEvents) -> Void
     
     @State
     private var isChecked: Bool = false
@@ -21,6 +29,7 @@ struct ReminderCellView: View {
                 .opacity(0.4)
                 .onTapGesture {
                     isChecked.toggle()
+                    onEvent(.onCheckToggle(reminder))
                 }
             
             VStack(alignment: .leading) {
@@ -45,6 +54,17 @@ struct ReminderCellView: View {
                 .font(.caption)
                 .opacity(0.4)
             }
+            
+            Spacer()
+            
+            Image(systemName: "info.circle.fill")
+                .onTapGesture {
+                    onEvent(.onInfo(reminder))
+                }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onEvent(.onSelect)
         }
     }
     
@@ -70,6 +90,6 @@ struct ReminderCellView: View {
 
 struct ReminderCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderCellView(reminder: PreviewData.aReminder)
+        ReminderCellView(reminder: PreviewData.aReminder) { _ in }
     }
 }
