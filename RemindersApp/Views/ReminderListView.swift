@@ -18,7 +18,14 @@ struct ReminderListView: View {
                 case .onSelect:
                     print("ON SELECT")
                 case let .onCheckToggle(reminder):
-                    print("ON TOGGLE")
+                    var config = ReminderEditConfig(with: reminder)
+                    config.isCompleted.toggle()
+                    
+                    do {
+                        try RemindersService.update(reminder: reminder, with: config)
+                    } catch {
+                        print(error)
+                    }
                 case let .onInfo(reminder):
                     print("ON INFO")
                 }

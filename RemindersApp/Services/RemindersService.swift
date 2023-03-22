@@ -35,10 +35,20 @@ struct RemindersService {
         try save()
     }
     
+    static func update(reminder: Reminder, with config: ReminderEditConfig) throws {
+        reminder.title = config.title
+        reminder.notes = config.notes
+        reminder.isCompleted = config.isCompleted
+        
+        reminder.reminderDate = config.hasDate ? config.reminderDate : nil
+        reminder.reminderTime = config.hasTime ? config.reminderTime : nil
+        try save()
+    }
+    
     static func getReminders(inList list: MyList) -> NSFetchRequest<Reminder> {
         let request = Reminder.fetchRequest()
         request.sortDescriptors = []
-        request.predicate = NSPredicate(format: "list = %@", list)
+        request.predicate = NSPredicate(format: "list = %@ AND isCompleted = false", list)
         return request
     }
 }
