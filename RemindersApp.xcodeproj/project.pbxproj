@@ -28,6 +28,7 @@
 		9098C91329A3510A000B81DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9098C91229A3510A000B81DA /* Assets.xcassets */; };
 		9098C91629A3510A000B81DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9098C91529A3510A000B81DA /* Preview Assets.xcassets */; };
 		90EEB6F529D1657E006D6CD5 /* SelectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EEB6F429D1657E006D6CD5 /* SelectListView.swift */; };
+		90EEB6F829D183D3006D6CD5 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EEB6F729D183D3006D6CD5 /* Delay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		9098C91229A3510A000B81DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9098C91529A3510A000B81DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		90EEB6F429D1657E006D6CD5 /* SelectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectListView.swift; sourceTree = "<group>"; };
+		90EEB6F729D183D3006D6CD5 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		9098C90D29A35109000B81DA /* RemindersApp */ = {
 			isa = PBXGroup;
 			children = (
+				90EEB6F629D183CC006D6CD5 /* Utils */,
 				9039D60829C09AA600377E42 /* Transformers */,
 				9039D60529C0994F00377E42 /* Services */,
 				9015EB2129A4973F002F4E24 /* Views */,
@@ -156,6 +159,14 @@
 				9039D60F29C0AAD500377E42 /* PreviewData.swift */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		90EEB6F629D183CC006D6CD5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				90EEB6F729D183D3006D6CD5 /* Delay.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 				908D286F29C4EAAF004A7E7C /* CustomOperators.swift in Sources */,
 				9015EB1D29A35C0E002F4E24 /* RemindersModel.xcdatamodeld in Sources */,
 				9015EB2029A35C68002F4E24 /* MyList+CoreData.swift in Sources */,
+				90EEB6F829D183D3006D6CD5 /* Delay.swift in Sources */,
 				908D286D29C4E7AA004A7E7C /* ReminderDetailView.swift in Sources */,
 				9039D60A29C09AD800377E42 /* UIColorTransformer.swift in Sources */,
 				9039D60729C0995F00377E42 /* RemindersService.swift in Sources */,

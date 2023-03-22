@@ -19,6 +19,8 @@ struct ReminderCellView: View {
     
     let onEvent: (ReminderCellEvents) -> Void
     
+    private let isCheckedDelay = Delay()
+    
     @State
     private var isChecked: Bool = false
     
@@ -28,8 +30,7 @@ struct ReminderCellView: View {
                 .font(.title2)
                 .opacity(0.4)
                 .onTapGesture {
-                    isChecked.toggle()
-                    onEvent(.onCheckToggle(reminder))
+                    toggleCompletedState()
                 }
             
             VStack(alignment: .leading) {
@@ -85,6 +86,18 @@ struct ReminderCellView: View {
     private func getTime() -> String? {
         guard let date = reminder.reminderTime else { return nil }
         return date.formatted(date: .omitted, time: .shortened)
+    }
+    
+    private func toggleCompletedState() {
+        isChecked.toggle()
+        
+        isCheckedDelay.cancel()
+        
+        if reminder.isCompleted != isChecked {
+            isCheckedDelay.perfom(in: 2) {
+                onEvent(.onCheckToggle(reminder))
+            }
+        }
     }
 }
 
