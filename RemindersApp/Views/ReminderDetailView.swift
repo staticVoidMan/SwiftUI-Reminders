@@ -37,7 +37,8 @@ struct ReminderDetailView: View {
                         DatePicker(
                             "Select Date",
                             selection: $editReminder.reminderDate ?? Date(),
-                            displayedComponents: .date)
+                            displayedComponents: .date
+                        )
                     }
                     
                     Toggle(isOn: $editReminder.hasTime) {
@@ -49,8 +50,15 @@ struct ReminderDetailView: View {
                         DatePicker(
                             "Select Time",
                             selection: $editReminder.reminderTime ?? Date(),
-                            displayedComponents: .hourAndMinute)
+                            displayedComponents: .hourAndMinute
+                        )
                     }
+                }
+                .onChange(of: editReminder.hasDate) { hasDate in
+                    editReminder.reminderDate = hasDate ? Date() : nil
+                }
+                .onChange(of: editReminder.hasTime) { hasTime in
+                    editReminder.reminderTime = hasTime ? Date() : nil
                 }
                 
                 Section {
