@@ -14,6 +14,9 @@ struct ReminderListView: View {
     @State
     private var selectedReminder: Reminder?
     
+    @State
+    private var showReminderDetail: Bool = false
+    
     var body: some View {
         List(reminders) { reminder in
             ReminderCellView(
@@ -32,10 +35,13 @@ struct ReminderListView: View {
                     } catch {
                         print(error)
                     }
-                case let .onInfo(reminder):
-                    print("ON INFO")
+                case .onInfo:
+                    showReminderDetail = true
                 }
             }
+        }
+        .sheet(isPresented: $showReminderDetail) {
+            ReminderDetailView(reminder: Binding($selectedReminder)!)
         }
     }
     

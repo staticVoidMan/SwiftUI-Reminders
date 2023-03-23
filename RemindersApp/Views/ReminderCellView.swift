@@ -9,7 +9,7 @@ import SwiftUI
 
 enum ReminderCellEvents {
     case onSelect
-    case onInfo(Reminder)
+    case onInfo
     case onCheckToggle(Reminder)
 }
 
@@ -62,7 +62,7 @@ struct ReminderCellView: View {
             if isSelected {
                 Image(systemName: "info.circle.fill")
                     .onTapGesture {
-                        onEvent(.onInfo(reminder))
+                        onEvent(.onInfo)
                     }
             }
         }
