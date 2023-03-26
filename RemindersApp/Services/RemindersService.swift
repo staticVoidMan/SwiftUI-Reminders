@@ -51,4 +51,9 @@ struct RemindersService {
         request.predicate = NSPredicate(format: "list = %@ AND isCompleted = false", list)
         return request
     }
+    
+    static func delete(reminder: Reminder) throws {
+        context.delete(reminder)
+        try save()
+    }
 }
