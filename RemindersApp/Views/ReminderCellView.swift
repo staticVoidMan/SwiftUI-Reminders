@@ -78,11 +78,9 @@ struct ReminderCellView: View {
     private func getRelativeDate() -> String? {
         guard let date = reminder.reminderDate else { return nil }
         
-        let calendar = Calendar.current
-        
-        if calendar.isDateInToday(date) {
+        if date.isToday {
             return "Today"
-        } else if calendar.isDateInTomorrow(date) {
+        } else if date.isTomorrow {
             return "Tomorrow"
         } else {
             return date.formatted(date: .numeric, time: .omitted)

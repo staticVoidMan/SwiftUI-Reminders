@@ -12,6 +12,8 @@
 		9015EB2029A35C68002F4E24 /* MyList+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015EB1F29A35C68002F4E24 /* MyList+CoreData.swift */; };
 		9015EB2729A49894002F4E24 /* AddNewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015EB2629A49894002F4E24 /* AddNewListView.swift */; };
 		9015EB2929A49A0D002F4E24 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9015EB2829A49A0D002F4E24 /* ColorPickerView.swift */; };
+		9026A84D29D2B3D500ACF944 /* ReminderStatisticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026A84C29D2B3D500ACF944 /* ReminderStatisticsProvider.swift */; };
+		9026A84F29D2B6E300ACF944 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026A84E29D2B6E300ACF944 /* Date+Extension.swift */; };
 		9028C00929C2422C002BBDBE /* ReminderListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028C00829C2422C002BBDBE /* ReminderListDetailView.swift */; };
 		9036BB7929C34CDC00E3EBA4 /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036BB7829C34CDC00E3EBA4 /* ReminderListView.swift */; };
 		9039D60729C0995F00377E42 /* RemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9039D60629C0995F00377E42 /* RemindersService.swift */; };
@@ -37,6 +39,8 @@
 		9015EB1F29A35C68002F4E24 /* MyList+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyList+CoreData.swift"; sourceTree = "<group>"; };
 		9015EB2629A49894002F4E24 /* AddNewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewListView.swift; sourceTree = "<group>"; };
 		9015EB2829A49A0D002F4E24 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		9026A84C29D2B3D500ACF944 /* ReminderStatisticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStatisticsProvider.swift; sourceTree = "<group>"; };
+		9026A84E29D2B6E300ACF944 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9028C00829C2422C002BBDBE /* ReminderListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListDetailView.swift; sourceTree = "<group>"; };
 		9036BB7829C34CDC00E3EBA4 /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
 		9039D60629C0995F00377E42 /* RemindersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersService.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9015EB1929A353A5002F4E24 /* CoreDataProvider.swift */,
+				9026A84C29D2B3D500ACF944 /* ReminderStatisticsProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				90EEB6F729D183D3006D6CD5 /* Delay.swift */,
+				9026A84E29D2B6E300ACF944 /* Date+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9028C00929C2422C002BBDBE /* ReminderListDetailView.swift in Sources */,
+				9026A84F29D2B6E300ACF944 /* Date+Extension.swift in Sources */,
 				9039D60C29C0A8CB00377E42 /* ReminderListsView.swift in Sources */,
 				9036BB7929C34CDC00E3EBA4 /* ReminderListView.swift in Sources */,
 				908D287129C4ECB8004A7E7C /* ReminderEditConfig.swift in Sources */,
@@ -250,6 +257,7 @@
 				9015EB2029A35C68002F4E24 /* MyList+CoreData.swift in Sources */,
 				90EEB6F829D183D3006D6CD5 /* Delay.swift in Sources */,
 				908D286D29C4E7AA004A7E7C /* ReminderDetailView.swift in Sources */,
+				9026A84D29D2B3D500ACF944 /* ReminderStatisticsProvider.swift in Sources */,
 				9039D60A29C09AD800377E42 /* UIColorTransformer.swift in Sources */,
 				9039D60729C0995F00377E42 /* RemindersService.swift in Sources */,
 				9015EB2929A49A0D002F4E24 /* ColorPickerView.swift in Sources */,
