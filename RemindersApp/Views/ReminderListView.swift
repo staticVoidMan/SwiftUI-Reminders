@@ -11,12 +11,18 @@ struct ReminderListView: View {
     
     let reminders: FetchedResults<Reminder>
     
+    @State
+    private var selectedReminder: Reminder?
+    
     var body: some View {
         List(reminders) { reminder in
-            ReminderCellView(reminder: reminder) { event in
+            ReminderCellView(
+                reminder: reminder,
+                isSelected: isReminderSelected(reminder)
+            ) { event in
                 switch event {
                 case .onSelect:
-                    print("ON SELECT")
+                    selectedReminder = reminder
                 case let .onCheckToggle(reminder):
                     var config = ReminderEditConfig(with: reminder)
                     config.isCompleted.toggle()
@@ -31,5 +37,9 @@ struct ReminderListView: View {
                 }
             }
         }
+    }
+    
+    private func isReminderSelected(_ reminder: Reminder) -> Bool {
+        selectedReminder?.objectID == reminder.objectID
     }
 }

@@ -16,6 +16,7 @@ enum ReminderCellEvents {
 struct ReminderCellView: View {
     
     let reminder: Reminder
+    let isSelected: Bool
     
     let onEvent: (ReminderCellEvents) -> Void
     
@@ -58,10 +59,12 @@ struct ReminderCellView: View {
             
             Spacer()
             
-            Image(systemName: "info.circle.fill")
-                .onTapGesture {
-                    onEvent(.onInfo(reminder))
-                }
+            if isSelected {
+                Image(systemName: "info.circle.fill")
+                    .onTapGesture {
+                        onEvent(.onInfo(reminder))
+                    }
+            }
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -103,6 +106,6 @@ struct ReminderCellView: View {
 
 struct ReminderCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderCellView(reminder: PreviewData.aReminder) { _ in }
+        ReminderCellView(reminder: PreviewData.aReminder, isSelected: false) { _ in }
     }
 }
