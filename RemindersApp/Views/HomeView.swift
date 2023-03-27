@@ -21,9 +21,51 @@ struct HomeView: View {
     @State
     private var searchTerm: String = ""
     
+    @State
+    private var reminderStatistics: ReminderStatistics = ReminderStatistics()
+    
     var body: some View {
         NavigationStack {
             VStack {
+                VStack {
+                    HStack {
+                        ReminderStatisticView(
+                            title: "Today",
+                            count: reminderStatistics.today,
+                            iconName: "calendar",
+                            iconColor: .blue
+                        )
+                        ReminderStatisticView(
+                            title: "Scheduled",
+                            count: reminderStatistics.scheduled,
+                            iconName: "calendar.circle.fill",
+                            iconColor: .red
+                        )
+                    }
+                    
+                    HStack {
+                        ReminderStatisticView(
+                            title: "All",
+                            count: reminderStatistics.all,
+                            iconName: "tray.circle.fill",
+                            iconColor: .secondary
+                        )
+                        ReminderStatisticView(
+                            title: "Completed",
+                            count: reminderStatistics.completed,
+                            iconName: "checkmark.circle.fill",
+                            iconColor: .green
+                        )
+                    }
+                }
+                .padding([.leading, .trailing])
+                
+                Text("My Lists")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                
                 ReminderListsView(lists: reminderLists)
                 
                 Spacer()
@@ -43,12 +85,16 @@ struct HomeView: View {
                     ReminderListView(reminders: searchResult)
                 }
             }
+            .navigationTitle("Reminders")
         }
         .searchable(text: $searchTerm)
         .onChange(of: searchTerm) { searchTerm in
             searchResult.nsPredicate = RemindersService
                 .filterReminders(searchTerm: searchTerm)
                 .predicate
+        }
+        .onAppear {
+            reminderStatistics = ReminderStatisticsProvider.getStatistics(from: reminderLists)
         }
         .sheet(isPresented: $isPresented) {
             AddNewListView(

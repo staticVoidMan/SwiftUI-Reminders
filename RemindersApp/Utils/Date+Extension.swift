@@ -16,8 +16,4 @@ extension Date {
     var isTomorrow: Bool {
         Calendar.current.isDateInTomorrow(self)
     }
-    
-    var isFuture: Bool {
-        !isToday && self.timeIntervalSince(Date()) > 0
-    }
 }

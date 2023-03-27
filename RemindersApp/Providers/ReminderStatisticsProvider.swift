@@ -40,22 +40,19 @@ struct ReminderStatisticsProvider {
             .compactMap { $0.reminders?.allObjects as? [Reminder] }
             .joined()
             .forEach { reminder in
-                all += 1
-                
-                if reminder.reminderDate?.isToday == true,
-                   !reminder.isCompleted {
-                    today += 1
-                }
-                
-                if reminder.reminderDate != nil,
-                   reminder.reminderTime != nil,
-                   !reminder.isCompleted {
-                    scheduled += 1
-                }
-                
-                if reminder.isCompleted
-                    || reminder.reminderDate?.isFuture == false {
+                if reminder.isCompleted {
                     completed += 1
+                } else {
+                    all += 1
+                    
+                    if reminder.reminderDate?.isToday == true {
+                        today += 1
+                    }
+                    
+                    if reminder.reminderDate != nil
+                        || reminder.reminderTime != nil {
+                        scheduled += 1
+                    }
                 }
             }
         
