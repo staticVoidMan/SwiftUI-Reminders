@@ -45,6 +45,11 @@ struct HomeView: View {
             }
         }
         .searchable(text: $searchTerm)
+        .onChange(of: searchTerm) { searchTerm in
+            searchResult.nsPredicate = RemindersService
+                .filterReminders(searchTerm: searchTerm)
+                .predicate
+        }
         .sheet(isPresented: $isPresented) {
             AddNewListView(
                 onSave: { name, color in

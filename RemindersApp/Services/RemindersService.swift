@@ -52,6 +52,13 @@ struct RemindersService {
         return request
     }
     
+    static func filterReminders(searchTerm: String) -> NSFetchRequest<Reminder> {
+        let request = Reminder.fetchRequest()
+        request.sortDescriptors = []
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchTerm)
+        return request
+    }
+    
     static func delete(reminder: Reminder) throws {
         context.delete(reminder)
         try save()
