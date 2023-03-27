@@ -45,7 +45,8 @@ struct ReminderStatisticsProvider {
                 } else {
                     all += 1
                     
-                    if reminder.reminderDate?.isToday == true {
+                    if reminder.reminderDate?.isToday == true
+                        || reminder.reminderTime?.isToday == true {
                         today += 1
                     }
                     

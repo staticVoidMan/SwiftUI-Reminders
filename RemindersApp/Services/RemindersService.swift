@@ -8,6 +8,13 @@
 import CoreData
 import UIKit
 
+enum ReminderStatistic {
+    case all
+    case today
+    case scheduled
+    case completed
+}
+
 struct RemindersService {
     
     static var context: NSManagedObjectContext {
@@ -56,6 +63,52 @@ struct RemindersService {
         let request = Reminder.fetchRequest()
         request.sortDescriptors = []
         request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchTerm)
+        return request
+    }
+    
+    static func filterReminders(forStatistic statistic: ReminderStatistic) -> NSFetchRequest<Reminder> {
+        let request = Reminder.fetchRequest()
+        request.sortDescriptors = []
+        
+        request.predicate = {
+            let isNotCompletedPredicate = NSPredicate(format: "isCompleted = false")
+            switch statistic {
+            case .all:
+                return isNotCompletedPredicate
+            case .today:
+                let today = Calendar.current.startOfDay(for: Date())
+                let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                
+                let datePredicate = NSPredicate(
+                    format: "reminderDate BETWEEN {%@, %@}",
+                    today as CVarArg,
+                    tomorrow as CVarArg
+                )
+                let timePredicate = NSPredicate(
+                    format: "reminderTime BETWEEN {%@, %@}",
+                    today as CVarArg,
+                    tomorrow as CVarArg
+                )
+                let orPredicate = NSCompoundPredicate(
+                    orPredicateWithSubpredicates: [datePredicate, timePredicate]
+                )
+                let andPredicate = NSCompoundPredicate(
+                    andPredicateWithSubpredicates: [isNotCompletedPredicate, orPredicate]
+                )
+                
+                return andPredicate
+            case .scheduled:
+                let hasSchedulePredicate = NSPredicate(format: "reminderDate != nil OR reminderTime != nil")
+                let andPredicate = NSCompoundPredicate(
+                    andPredicateWithSubpredicates: [isNotCompletedPredicate, hasSchedulePredicate]
+                )
+                
+                return andPredicate
+            case .completed:
+                return NSPredicate(format: "isCompleted = true")
+            }
+        }()
+        
         return request
     }
     

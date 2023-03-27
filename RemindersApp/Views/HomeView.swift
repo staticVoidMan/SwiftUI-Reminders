@@ -15,6 +15,18 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: [])
     private var searchResult: FetchedResults<Reminder>
     
+    @FetchRequest(fetchRequest: RemindersService.filterReminders(forStatistic: .today))
+    private var todayReminders: FetchedResults<Reminder>
+    
+    @FetchRequest(fetchRequest: RemindersService.filterReminders(forStatistic: .scheduled))
+    private var scheduledReminders: FetchedResults<Reminder>
+    
+    @FetchRequest(fetchRequest: RemindersService.filterReminders(forStatistic: .all))
+    private var allReminders: FetchedResults<Reminder>
+    
+    @FetchRequest(fetchRequest: RemindersService.filterReminders(forStatistic: .completed))
+    private var completedReminders: FetchedResults<Reminder>
+    
     @State
     private var isPresented: Bool = false
     
@@ -29,33 +41,52 @@ struct HomeView: View {
             VStack {
                 VStack {
                     HStack {
-                        ReminderStatisticView(
-                            title: "Today",
-                            count: reminderStatistics.today,
-                            iconName: "calendar",
-                            iconColor: .blue
-                        )
-                        ReminderStatisticView(
-                            title: "Scheduled",
-                            count: reminderStatistics.scheduled,
-                            iconName: "calendar.circle.fill",
-                            iconColor: .red
-                        )
+                        NavigationLink {
+                            ReminderListView(reminders: todayReminders)
+                        } label: {
+                            ReminderStatisticView(
+                                title: "Today",
+                                count: reminderStatistics.today,
+                                iconName: "calendar",
+                                iconColor: .blue
+                            )
+                        }
+
+                        NavigationLink {
+                            ReminderListView(reminders: scheduledReminders)
+                        } label: {
+                            ReminderStatisticView(
+                                title: "Scheduled",
+                                count: reminderStatistics.scheduled,
+                                iconName: "calendar.circle.fill",
+                                iconColor: .red
+                            )
+                        }
                     }
                     
                     HStack {
-                        ReminderStatisticView(
-                            title: "All",
-                            count: reminderStatistics.all,
-                            iconName: "tray.circle.fill",
-                            iconColor: .secondary
-                        )
-                        ReminderStatisticView(
-                            title: "Completed",
-                            count: reminderStatistics.completed,
-                            iconName: "checkmark.circle.fill",
-                            iconColor: .green
-                        )
+                        
+                        NavigationLink {
+                            ReminderListView(reminders: allReminders)
+                        } label: {
+                            ReminderStatisticView(
+                                title: "All",
+                                count: reminderStatistics.all,
+                                iconName: "tray.circle.fill",
+                                iconColor: .secondary
+                            )
+                        }
+                        
+                        NavigationLink {
+                            ReminderListView(reminders: completedReminders)
+                        } label: {
+                            ReminderStatisticView(
+                                title: "Completed",
+                                count: reminderStatistics.completed,
+                                iconName: "checkmark.circle.fill",
+                                iconColor: .green
+                            )
+                        }
                     }
                 }
                 .padding([.leading, .trailing])
