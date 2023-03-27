@@ -70,6 +70,9 @@ struct ReminderCellView: View {
         .onTapGesture {
             onEvent(.onSelect)
         }
+        .onAppear {
+            isChecked = reminder.isCompleted
+        }
     }
     
     private func getRelativeDate() -> String? {
