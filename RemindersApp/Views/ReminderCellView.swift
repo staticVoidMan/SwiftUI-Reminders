@@ -107,6 +107,11 @@ struct ReminderCellView: View {
 
 struct ReminderCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderCellView(reminder: PreviewData.aReminder, isSelected: false) { _ in }
+        ReminderCellView(
+            reminder: PreviewData.aReminder,
+            isSelected: false,
+            onEvent: { _ in }
+        )
+        .previewLayout(.sizeThatFits)
     }
 }

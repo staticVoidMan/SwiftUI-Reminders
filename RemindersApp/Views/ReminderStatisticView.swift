@@ -15,6 +15,9 @@ struct ReminderStatisticView: View {
     let iconName: String
     let iconColor: Color
     
+    @Environment(\.colorScheme)
+    private var colorScheme
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
@@ -31,8 +34,8 @@ struct ReminderStatisticView: View {
                 .font(.largeTitle)
         }
         .padding()
-        .background(.gray)
-        .foregroundColor(.white)
+        .background(colorScheme == .dark ? Color.darkGray : .offWhite)
+        .foregroundColor(colorScheme == .dark ? Color.offWhite : .darkGray)
         .clipShape(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
         )
@@ -41,12 +44,22 @@ struct ReminderStatisticView: View {
 
 struct ReminderStatisticView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderStatisticView(
-            title: "Today",
-            count: 99,
-            iconName: "calendar",
-            iconColor: .blue
-        )
-            .previewLayout(.sizeThatFits)
+        VStack {
+            ReminderStatisticView(
+                title: "Today",
+                count: 99,
+                iconName: "calendar",
+                iconColor: .blue
+            )
+            .environment(\.colorScheme, .dark)
+            ReminderStatisticView(
+                title: "Today",
+                count: 99,
+                iconName: "calendar",
+                iconColor: .blue
+            )
+            .environment(\.colorScheme, .light)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
