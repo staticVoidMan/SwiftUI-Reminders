@@ -82,6 +82,11 @@ struct ReminderDetailView: View {
                     Button("Done") {
                         do {
                             try RemindersService.update(reminder: reminder, with: editReminder)
+                            
+                            if reminder.reminderDate != nil || reminder.reminderTime != nil {
+                                NotificationService.schedule(reminder: reminder)
+                            }
+                            
                             dismiss()
                         } catch {
                             print(error)
